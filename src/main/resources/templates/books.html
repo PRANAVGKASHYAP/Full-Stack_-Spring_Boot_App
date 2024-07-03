@@ -1,0 +1,120 @@
+<!--
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/5c914a3d90.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<div th:insert="fragment/header::header"></div>
+<div class="container my-2">
+  <div class="card">
+    <div class="card-body">
+      <div th:switch="${books}" class="container my-5">
+        <p>
+          <a href="/add-book">
+            <i>Add Book</i>
+          </a>
+        </p>
+        <div class="col-md-12">
+          <h2 th:case="null">NO RECORD FOUND ...</h2>
+          <div th:case="*">
+            <table>
+              <thead>
+              <tr>
+                <th>ISBN</th>
+                <th>BOOK NAME</th>
+                <th>Description</th>
+                <th>Detail</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr th:each=" books : ${books}">
+                  <td th:text="${books.isbn}"></td>
+                  <td th:text="${books.name}"></td>
+                  <td th:text="${books.description}"></td>
+                  <td><a th:href="@{/book/{id}(id=${books.id})}"> <i></i></a></td>
+                  <td><a th:href="@{/update-book/{id}(id=${books.id})}"> <i></i></a></td>
+                  <td><a th:href="@{/remove-book/{id}(id=${books.id})}"> <i></i></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
+
+
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Books</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/5c914a3d90.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div th:insert="fragment/header::header"></div>
+
+<div class="container my-5">
+  <div class="card">
+    <div class="card-body">
+      <div th:switch="${books}" class="container my-5">
+        <p>
+          <a href="/add-book" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add Book
+          </a>
+        </p>
+        <div class="col-md-12">
+          <h2 th:case="null" class="text-center text-danger">No Record Found</h2>
+          <div th:case="*">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>ISBN</th>
+                <th>Book Name</th>
+                <th>Description</th>
+                <th>Detail</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="book : ${books}">
+                <td th:text="${book.isbn}"></td>
+                <td th:text="${book.name}"></td>
+                <td th:text="${book.description}"></td>
+                <td><a th:href="@{/book/{id}(id=${book.id})}" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></a></td>
+                <td><a th:href="@{/update-book/{id}(id=${book.id})}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
+                <td><a th:href="@{/remove-book/{id}(id=${book.id})}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGzC27tq5H5VRb2Lg9tRAxU4l7/5RrTn6g5p6e0s04bJQ" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-ZM8bbh18IY6fInmR5NMPdDyyQp49uOq2F37GbPEfY5iTZVftI/tujHVaJzzAN2cZ" crossorigin="anonymous"></script>
+</body>
+</html>
